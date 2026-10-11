@@ -381,6 +381,61 @@ body.ic {
 }
 @keyframes don { to { transform: rotate(360deg); } }
 
+.papatya-dugme {
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  line-height: 0;
+  cursor: pointer;
+}
+.papatya-dugme:focus-visible {
+  outline: 2px dashed var(--pembe-koyu);
+  outline-offset: 4px;
+}
+
+/* Papatya sürprizi: sticker havadan küçülerek iner, pat diye yapışır,
+   bir saniye kalıp kaybolur. Konumu ve açısı efektler.js'ten gelir. */
+.sticker {
+  position: fixed;
+  z-index: 10000;
+  height: auto;
+  pointer-events: none;
+  transform: rotate(var(--aci, 0deg));
+  animation: sticker-yapis 1.3s forwards;
+}
+
+@keyframes sticker-yapis {
+  0% {
+    opacity: 0;
+    transform: rotate(var(--aci)) scale(2.4);
+    filter: drop-shadow(14px 22px 14px rgba(0, 0, 0, .25));
+    animation-timing-function: cubic-bezier(.55, 0, 1, .45);
+  }
+  15% {
+    opacity: 1;
+    transform: rotate(var(--aci)) scale(.93);
+    filter: drop-shadow(2px 3px 2px rgba(0, 0, 0, .4));
+    animation-timing-function: ease-out;
+  }
+  22% { transform: rotate(var(--aci)) scale(1.02); }
+  28%, 85% {
+    opacity: 1;
+    transform: rotate(var(--aci)) scale(1);
+    filter: drop-shadow(2px 3px 2px rgba(0, 0, 0, .4));
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(var(--aci)) scale(.96);
+    filter: drop-shadow(2px 3px 2px rgba(0, 0, 0, .4));
+  }
+}
+
+@keyframes sticker-sakin {
+  0%, 100% { opacity: 0; }
+  10%, 85% { opacity: 1; }
+}
+
 .karsilama {
   max-width: 520px;
   margin: 10px auto 18px;
@@ -546,6 +601,7 @@ body.ic {
   .yanip-son, .papatya { animation: none; }
   .yildiz { animation: none; transform: scale(.6); opacity: .8; }
   .giris .wordart.dalgali span { animation: none; }
+  .sticker { animation-name: sticker-sakin; }
 }
 
 /* İmleç pırıltısı */

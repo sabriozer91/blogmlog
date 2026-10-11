@@ -24,6 +24,37 @@
 
   function rastgele(min, max) { return min + Math.random() * (max - min); }
 
+  // Papatya sürprizi: başlıktaki papatyaya basınca sticker papatyanın
+  // iki katı genişlikte üstüne yapışır (animasyon stil.css'te)
+  var STICKER = 'img/sticker.webp';
+  var STICKER_ORAN = 482 / 320; // boy / en
+  var dugmeler = document.querySelectorAll('.papatya-dugme');
+  if (dugmeler.length) new Image().src = STICKER; // ilk tıklamada beklemesin
+
+  dugmeler.forEach(function (dugme) {
+    dugme.addEventListener('click', function () {
+      var cicek = dugme.getBoundingClientRect();
+      var en = cicek.width * 2;
+      var boy = en * STICKER_ORAN;
+      var kenar = 8;
+      var sol = cicek.left + cicek.width / 2 - en / 2;
+      var ust = cicek.top + cicek.height / 2 - boy / 2;
+      sol = Math.max(kenar, Math.min(sol, window.innerWidth - en - kenar));
+      ust = Math.max(kenar, Math.min(ust, window.innerHeight - boy - kenar));
+
+      var sticker = document.createElement('img');
+      sticker.className = 'sticker';
+      sticker.src = STICKER;
+      sticker.alt = '';
+      sticker.style.left = sol + 'px';
+      sticker.style.top = ust + 'px';
+      sticker.style.width = en + 'px';
+      sticker.style.setProperty('--aci', rastgele(-12, 12).toFixed(1) + 'deg');
+      sticker.addEventListener('animationend', function () { sticker.remove(); });
+      document.body.appendChild(sticker);
+    });
+  });
+
   // Yan menüdeki gökyüzü: rastgele yerlerde büyüyüp küçülen yıldızlar
   var menu = document.querySelector('.yan-menu');
   var gok = null;
