@@ -23,7 +23,7 @@
       <circle r="3.5" fill="#ffe14d" stroke="#8a6d00" stroke-width=".8"/>
     </g>
   </defs>
-  <rect width="96" height="96" fill="#2f6b1f"/>
+  <rect width="96" height="96" fill="#e2b3bb"/>
   <use href="#cicek" transform="translate(24 24)"/>
   <use href="#cicek" transform="translate(72 72) rotate(15)"/>
   <use href="#cicek" transform="translate(72 22) rotate(40) scale(.7)"/>

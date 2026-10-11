@@ -105,6 +105,7 @@
     var YERLESIM = [[24, 24, 0, 1], [72, 72, 15, 1], [72, 22, 40, 0.7], [22, 74, 10, 0.75]];
     var yaprak = new Path2D('M0 0 C -7 -6 -6 -17 0 -21 C 6 -17 7 -6 0 0 Z');
     var dpr, kalip, cicekler, en = 0, boy = 0;
+    var zemin = getComputedStyle(document.body).backgroundColor; // renk stil.css'te
 
     // Çiçeği bir kez küçük bir tuvale çiz, her karede onu döndürüp bas
     function kalipCiz() {
@@ -164,7 +165,7 @@
       var t = zaman / 1000;
       var yarim = kalip.width / 2;
       ctx.setTransform(1, 0, 0, 1, 0, 0);
-      ctx.fillStyle = '#2f6b1f';
+      ctx.fillStyle = zemin;
       ctx.fillRect(0, 0, tuval.width, tuval.height);
       for (var i = 0; i < cicekler.length; i++) {
         var c = cicekler[i];
