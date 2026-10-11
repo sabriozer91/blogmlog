@@ -100,9 +100,9 @@
     document.body.prepend(tuval);
     document.body.classList.add('cicekler-canli');
 
-    // Papatya tarlası: her 40px'lik kareye kaydırılmış, iri bir papatya düşer;
+    // Papatya tarlası: her 20px'lik kareye kaydırılmış, iri bir papatya düşer;
     // komşular iç içe geçip zemini neredeyse tamamen kapatır
-    var ARALIK = 40;
+    var ARALIK = 20;
     var KALIP_OLCEK = 2; // kalıp iki kat büyük çizilir, iri papatyalar da net kalsın
     var yaprak = new Path2D('M0 -2 C 3.6 -6 3.6 -18 0 -21 C -3.6 -18 -3.6 -6 0 -2 Z');
     var dpr, kalip, cicekler, en = 0, boy = 0;
