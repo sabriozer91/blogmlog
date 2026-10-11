@@ -100,9 +100,10 @@
     document.body.prepend(tuval);
     document.body.classList.add('cicekler-canli');
 
-    // img/papatya-deseni.svg ile aynı desen: 96px karede 4 papatya [x, y, açı, boy]
-    var DESEN = 96;
-    var YERLESIM = [[24, 24, 0, 1], [72, 72, 15, 1], [72, 22, 40, 0.7], [22, 74, 10, 0.75]];
+    // Papatya tarlası: her 40px'lik kareye kaydırılmış, iri bir papatya düşer;
+    // komşular iç içe geçip zemini neredeyse tamamen kapatır
+    var ARALIK = 40;
+    var KALIP_OLCEK = 2; // kalıp iki kat büyük çizilir, iri papatyalar da net kalsın
     var yaprak = new Path2D('M0 -2 C 3.6 -6 3.6 -18 0 -21 C -3.6 -18 -3.6 -6 0 -2 Z');
     var dpr, kalip, cicekler, en = 0, boy = 0;
     var zemin = getComputedStyle(document.body).backgroundColor; // renk stil.css'te
@@ -110,10 +111,10 @@
     // Papatyayı bir kez küçük bir tuvale çiz, her karede onu döndürüp bas
     function kalipCiz() {
       kalip = document.createElement('canvas');
-      kalip.width = kalip.height = Math.ceil(48 * dpr);
+      kalip.width = kalip.height = Math.ceil(48 * dpr * KALIP_OLCEK);
       var c = kalip.getContext('2d');
       c.translate(kalip.width / 2, kalip.height / 2);
-      c.scale(dpr, dpr);
+      c.scale(dpr * KALIP_OLCEK, dpr * KALIP_OLCEK);
 
       // Arka sıra: aralara düşen, biraz kısa kremimsi yapraklar
       c.fillStyle = '#f3ece0';
@@ -150,20 +151,27 @@
       kalipCiz();
 
       cicekler = [];
-      for (var y = 0; y < boy; y += DESEN) {
-        for (var x = 0; x < en; x += DESEN) {
-          YERLESIM.forEach(function (p) {
-            cicekler.push({
-              x: x + p[0],
-              y: y + p[1],
-              boy: p[3],
-              aci: rastgele(0, Math.PI * 2),
-              hiz: rastgele(0.15, 0.45) * (Math.random() < 0.5 ? -1 : 1),
-              nefes: rastgele(2.5, 6),
-              faz: rastgele(0, Math.PI * 2)
-            });
+      var kayma = ARALIK * 0.45;
+      for (var y = -ARALIK / 2; y < boy + ARALIK; y += ARALIK) {
+        for (var x = -ARALIK / 2; x < en + ARALIK; x += ARALIK) {
+          cicekler.push({
+            x: x + rastgele(-kayma, kayma),
+            y: y + rastgele(-kayma, kayma),
+            boy: rastgele(1.3, 1.9),
+            aci: rastgele(0, Math.PI * 2),
+            hiz: rastgele(0.15, 0.45) * (Math.random() < 0.5 ? -1 : 1),
+            nefes: rastgele(2.5, 6),
+            faz: rastgele(0, Math.PI * 2)
           });
         }
+      }
+
+      // Karışık sırayla çiz ki hangisinin üstte kaldığı doğal görünsün
+      for (var i = cicekler.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var gecici = cicekler[i];
+        cicekler[i] = cicekler[j];
+        cicekler[j] = gecici;
       }
     }
 
@@ -175,7 +183,7 @@
       ctx.fillRect(0, 0, tuval.width, tuval.height);
       for (var i = 0; i < cicekler.length; i++) {
         var c = cicekler[i];
-        var olcek = c.boy * (0.9 + 0.1 * Math.sin(t * 2 * Math.PI / c.nefes + c.faz));
+        var olcek = c.boy * (0.9 + 0.1 * Math.sin(t * 2 * Math.PI / c.nefes + c.faz)) / KALIP_OLCEK;
         var a = c.aci + c.hiz * t;
         var cos = Math.cos(a) * olcek;
         var sin = Math.sin(a) * olcek;
