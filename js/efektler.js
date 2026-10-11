@@ -16,6 +16,7 @@
       var y = Math.sin(t * Math.PI * 2) * -0.09;
       var olcek = 1 + Math.sin(t * Math.PI) * 0.18;
       span.style.transform = 'translateY(' + y + 'em) scaleY(' + olcek + ')';
+      span.style.setProperty('--sira', i); // stil.css'teki harf dalgası gecikmesi için
       el.appendChild(span);
     });
     el.classList.add('dalgali');
@@ -159,7 +160,7 @@
             y: y + rastgele(-kayma, kayma),
             boy: rastgele(1.3, 1.9),
             aci: rastgele(0, Math.PI * 2),
-            hiz: rastgele(0.15, 0.45) * (Math.random() < 0.5 ? -1 : 1),
+            hiz: rastgele(0.135, 0.405) * (Math.random() < 0.5 ? -1 : 1),
             nefes: rastgele(2.5, 6),
             faz: rastgele(0, Math.PI * 2)
           });
