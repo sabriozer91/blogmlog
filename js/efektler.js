@@ -3,7 +3,8 @@
 (function () {
   var hareketAzalt = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Dalgalı WordArt: harfleri bölüp her birini sinüs eğrisine oturt
+  // Dalgalı WordArt: harfleri böl, her birine sırasını ver; harfler aynı
+  // çizgide durur, dalgayı stil.css bu sıraya göre gecikmeli oynatır
   document.querySelectorAll('.wordart-dalga').forEach(function (el) {
     var harfler = Array.from(el.textContent);
     el.setAttribute('aria-label', el.textContent);
@@ -12,11 +13,7 @@
       var span = document.createElement('span');
       span.setAttribute('aria-hidden', 'true');
       span.textContent = harf === ' ' ? ' ' : harf;
-      var t = harfler.length > 1 ? i / (harfler.length - 1) : 0;
-      var y = Math.sin(t * Math.PI * 2) * -0.09;
-      var olcek = 1 + Math.sin(t * Math.PI) * 0.18;
-      span.style.transform = 'translateY(' + y + 'em) scaleY(' + olcek + ')';
-      span.style.setProperty('--sira', i); // stil.css'teki harf dalgası gecikmesi için
+      span.style.setProperty('--sira', i);
       el.appendChild(span);
     });
     el.classList.add('dalgali');

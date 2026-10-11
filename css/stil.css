@@ -138,9 +138,8 @@ body.giris.cicekler-canli { background-image: none; }
 
 .giris .wordart { font-size: clamp(44px, 12vw, 76px); }
 
-/* HOŞGELDİNİZ: harfler sırayla yükselip iner. `translate` ayrı bir özellik
-   olduğu için harflerin sabit kavisli duruşunu (transform) bozmaz. */
-.giris .wordart.dalgali span {
+/* HOŞGELDİNİZ ve blogmlog logosu: aynı çizgideki harfler sırayla yükselip iner */
+.wordart.dalgali span {
   animation: harf-dalga 2.4s ease-in-out infinite;
   animation-delay: calc(var(--sira, 0) * 0.15s);
 }
@@ -600,7 +599,7 @@ body.ic {
 @media (prefers-reduced-motion: reduce) {
   .yanip-son, .papatya { animation: none; }
   .yildiz { animation: none; transform: scale(.6); opacity: .8; }
-  .giris .wordart.dalgali span { animation: none; }
+  .wordart.dalgali span { animation: none; }
   .sticker { animation-name: sticker-sakin; }
 }
 
