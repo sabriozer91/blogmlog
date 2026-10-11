@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Yayına kadar arama motorlarından gizli; blogmlog.com bağlanınca kaldır -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>Ziyaretçi Defteri — blogmlog</title>
+  <meta name="description" content="blogmlog ziyaretçi defteri: bir iz bırak!">
+  <link rel="icon" href="img/papatya.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/stil.css">
+</head>
+<body class="ic">
+  <div class="cerceve">
+    <nav class="yan-menu" aria-label="Ana menü">
+      <a class="mini-logo" href="index.html">blogmlog</a>
+      <ul class="menu-listesi">
+        <li><a href="blog.html"><span class="menu-ikon" aria-hidden="true">&#8962;</span>Ana Sayfa</a></li>
+        <li><a href="blog.html#yazilar"><span class="menu-ikon" aria-hidden="true">&#9998;</span>Yazılarım</a></li>
+        <li><a href="hakkimda.html"><span class="menu-ikon" aria-hidden="true">&#9786;</span>Hakkımda</a></li>
+        <li><a href="fotograflarim.html"><span class="menu-ikon" aria-hidden="true">&#10047;</span>Fotoğraflarım</a></li>
+        <li><a href="ziyaretci-defteri.html" aria-current="page"><span class="menu-ikon" aria-hidden="true">&#9733;</span>Ziyaretçi Defteri</a></li>
+        <li><a href="bana-yaz.html"><span class="menu-ikon" aria-hidden="true">&#9993;</span>Bana Yaz</a></li>
+      </ul>
+
+      <div class="sayac">
+        Ziyaretçi Sayısı<br>
+        <span class="sayac-rakamlar" aria-label="000427"><span>0</span><span>0</span><span>0</span><span>4</span><span>2</span><span>7</span></span>
+      </div>
+    </nav>
+
+    <main class="icerik">
+      <header class="ust-baslik">
+        <a href="blog.html" style="text-decoration:none"><span class="wordart wordart-dalga">blogmlog</span></a>
+        <span class="wordart com" aria-hidden="true">.COM</span>
+        <button class="papatya-dugme" type="button" aria-label="Sürpriz"><img class="papatya" src="img/papatya.svg" alt="" width="82" height="82"></button>
+      </header>
+
+      <hr class="gokkusagi">
+
+      <section class="yazi">
+        <h1>Defterimi İmzala!</h1>
+        <p>Buraya kadar geldiysen bir iz bırakmadan gitme :) İmzalar onaylandıktan sonra deftere eklenir.</p>
+
+        <!-- Şimdilik gönderim yok; defter.js sadece teşekkür ekranını gösterir.
+             FormSubmit sonra bağlanacak, gizli alanlar ve tuzak alanı onun için. -->
+        <form class="mektup" id="defter-formu">
+          <input type="hidden" name="_subject" value="blogmlog ziyaretçi defterine yeni imza!">
+          <input type="hidden" name="_template" value="box">
+          <input class="bal-kupu" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <label for="defter-ad">Adın:</label>
+          <input id="defter-ad" name="Ad" type="text" required maxlength="60" autocomplete="name">
+
+          <label for="defter-sehir">Şehrin:</label>
+          <input id="defter-sehir" name="Şehir" type="text" maxlength="40" autocomplete="address-level2">
+
+          <label for="defter-nereden">Sitemi nereden buldun?</label>
+          <select id="defter-nereden" name="Nereden">
+            <option value="">Seç bakalım...</option>
+            <option>Arkadaşım söyledi</option>
+            <option>Arama motorunda buldum</option>
+            <option>Tesadüfen denk geldim</option>
+            <option>Zeynep'i tanıyorum :)</option>
+          </select>
+
+          <label for="defter-mesaj">Mesajın:</label>
+          <div class="surat-dugmeleri" role="group" aria-label="Surat ekle">
+            <button class="surat-dugme" type="button" data-kod=":)" aria-label="Gülen surat ekle"><img src="img/surat/gulen.svg" alt="" width="20" height="20"></button>
+            <button class="surat-dugme" type="button" data-kod=";)" aria-label="Göz kırpan surat ekle"><img src="img/surat/goz-kirpan.svg" alt="" width="20" height="20"></button>
+            <button class="surat-dugme" type="button" data-kod=":P" aria-label="Dil çıkaran surat ekle"><img src="img/surat/dil.svg" alt="" width="20" height="20"></button>
+            <button class="surat-dugme" type="button" data-kod="<3" aria-label="Kalp ekle"><img src="img/surat/kalp.svg" alt="" width="20" height="20"></button>
+          </div>
+          <textarea id="defter-mesaj" name="Mesaj" rows="5" required maxlength="1000"></textarea>
+
+          <div class="mektup-dugmeler">
+            <button class="klasik-dugme" type="submit">İmzala</button>
+            <button class="klasik-dugme" type="reset">Temizle</button>
+          </div>
+          <p class="mektup-durum" role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="gonderildi" tabindex="-1" hidden>
+          <div class="ucan-kalpler" aria-hidden="true">
+            <span style="--x: 20%; --boy: 18px; --gecikme: 0s">&#9829;</span>
+            <span style="--x: 38%; --boy: 26px; --gecikme: .5s">&#9829;</span>
+            <span style="--x: 52%; --boy: 20px; --gecikme: 1.1s">&#9829;</span>
+            <span style="--x: 66%; --boy: 24px; --gecikme: .3s">&#9829;</span>
+            <span style="--x: 80%; --boy: 16px; --gecikme: .8s">&#9829;</span>
+          </div>
+          <p class="gonderildi-mesaj">Defterimi imzaladığın için teşekkürler!</p>
+          <p>İmzan onaylanınca burada görünecek :)</p>
+        </div>
+      </section>
+
+      <section class="imzalar" aria-labelledby="imzalar-baslik">
+        <h2 class="bolum-baslik" id="imzalar-baslik">~*~ İmzalar ~*~</h2>
+        <p class="imza-toplam"></p>
+        <div class="imza-listesi"></div>
+        <noscript><p class="imza-toplam">İmzaları görmek için JavaScript'i açman gerekiyor.</p></noscript>
+        <nav class="imza-sayfalama" aria-label="İmza sayfaları" hidden>
+          <button class="klasik-dugme" type="button" data-yon="-1">&laquo; Önceki 10</button>
+          <span class="imza-sayfa"></span>
+          <button class="klasik-dugme" type="button" data-yon="1">Sonraki 10 &raquo;</button>
+        </nav>
+      </section>
+
+      <hr class="gokkusagi">
+
+      <footer class="alt-bilgi">
+        <p>Her Hakkı blogmlog'a Aittir &copy; 2026</p>
+      </footer>
+    </main>
+  </div>
+
+  <script src="js/efektler.js"></script>
+  <script src="js/defter.js"></script>
+</body>
+</html>
