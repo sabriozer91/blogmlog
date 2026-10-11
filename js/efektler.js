@@ -100,36 +100,42 @@
     document.body.prepend(tuval);
     document.body.classList.add('cicekler-canli');
 
-    // img/cicekler-kirmizi.svg ile aynı desen: 96px karede 4 çiçek [x, y, açı, boy]
+    // img/papatya-deseni.svg ile aynı desen: 96px karede 4 papatya [x, y, açı, boy]
     var DESEN = 96;
     var YERLESIM = [[24, 24, 0, 1], [72, 72, 15, 1], [72, 22, 40, 0.7], [22, 74, 10, 0.75]];
-    var yaprak = new Path2D('M0 0 C -7 -6 -6 -17 0 -21 C 6 -17 7 -6 0 0 Z');
+    var yaprak = new Path2D('M0 -2 C 3.6 -6 3.6 -18 0 -21 C -3.6 -18 -3.6 -6 0 -2 Z');
     var dpr, kalip, cicekler, en = 0, boy = 0;
     var zemin = getComputedStyle(document.body).backgroundColor; // renk stil.css'te
 
-    // Çiçeği bir kez küçük bir tuvale çiz, her karede onu döndürüp bas
+    // Papatyayı bir kez küçük bir tuvale çiz, her karede onu döndürüp bas
     function kalipCiz() {
       kalip = document.createElement('canvas');
       kalip.width = kalip.height = Math.ceil(48 * dpr);
       var c = kalip.getContext('2d');
       c.translate(kalip.width / 2, kalip.height / 2);
       c.scale(dpr, dpr);
-      c.lineWidth = 1;
-      c.fillStyle = '#e8173f';
-      c.strokeStyle = '#7d0019';
-      for (var i = 0; i < 6; i++) {
-        c.save(); c.rotate(i * Math.PI / 3); c.fill(yaprak); c.stroke(yaprak); c.restore();
+
+      // Arka sıra: aralara düşen, biraz kısa kremimsi yapraklar
+      c.fillStyle = '#f3ece0';
+      for (var i = 0; i < 16; i++) {
+        c.save(); c.rotate((i + 0.5) * Math.PI / 8); c.scale(0.92, 0.92); c.fill(yaprak); c.restore();
       }
-      c.fillStyle = '#ff5a78';
-      for (i = 0; i < 6; i++) {
-        c.save(); c.rotate(Math.PI / 6 + i * Math.PI / 3); c.scale(0.6, 0.6); c.fill(yaprak); c.restore();
-      }
-      c.beginPath();
-      c.arc(0, 0, 3.5, 0, Math.PI * 2);
-      c.fillStyle = '#ffe14d';
-      c.fill();
+      // Ön sıra: ince kenarlı beyaz yapraklar
+      c.fillStyle = '#ffffff';
+      c.strokeStyle = '#cdbfa6';
       c.lineWidth = 0.8;
-      c.strokeStyle = '#8a6d00';
+      for (i = 0; i < 16; i++) {
+        c.save(); c.rotate(i * Math.PI / 8); c.fill(yaprak); c.stroke(yaprak); c.restore();
+      }
+
+      var gobek = c.createRadialGradient(-1.5, -1.5, 0, -1.5, -1.5, 6);
+      gobek.addColorStop(0, '#fff2a0');
+      gobek.addColorStop(1, '#eba400');
+      c.beginPath();
+      c.arc(0, 0, 5, 0, Math.PI * 2);
+      c.fillStyle = gobek;
+      c.fill();
+      c.strokeStyle = '#b47600';
       c.stroke();
     }
 

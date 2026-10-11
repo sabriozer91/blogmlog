@@ -111,7 +111,7 @@ img { max-width: 100%; }
 
 body.giris {
   min-height: 100vh;
-  background: #e2b3bb url("../img/cicekler-kirmizi.svg") repeat;
+  background: #fdf3dc url("../img/papatya-deseni.svg") repeat;
   text-align: center;
   color: #fff;
 }
@@ -167,15 +167,23 @@ body.giris.cicekler-canli { background-image: none; }
 
 .gir-linki {
   display: inline-block;
-  margin: 4px 0 24px;
+  margin: 4px 0 10px;
   font-family: var(--verdana);
   font-size: 17px;
   font-weight: bold;
-  color: #7ff6ff;
-  text-shadow: 1px 1px 0 #000, 0 0 6px #000;
+  color: var(--link);
+  text-shadow: 0 0 3px #fff, 1px 1px 0 #fff;
 }
-.gir-linki:visited { color: #7ff6ff; }
-.gir-linki:hover { color: #ffff66; }
+.gir-linki:visited { color: var(--link); }
+.gir-linki:hover { color: #ff0000; }
+
+.cicek-cizgi {
+  display: block;
+  width: 520px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto 16px;
+}
 
 .giris .kucuk-not {
   margin: 10px 0 0;
