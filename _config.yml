@@ -1,0 +1,35 @@
+# blogmlog — Jekyll ayarları. GitHub Pages siteyi her push'ta bu ayarlarla derler.
+
+title: blogmlog
+lang: tr
+timezone: Europe/Istanbul
+
+# Yazılar sitenin kökünde düz bir adreste durur (ör. yazi-ilk-yazim.html).
+# Böylece bütün linkler göreli kalır; site hem github.io/blogmlog/ altında
+# hem blogmlog.com'da aynı şekilde çalışır.
+permalink: /yazi-:title.html
+
+# İleri tarihli bir yazı da hemen görünsün (saat dilimi şaşırtmasın)
+future: true
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: yazi
+      menu: yazilar
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - onizle.sh
+  - README.md
+  - "IMG_*"
+  - "Screenshot *"
+  - "WhatsApp *"

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+{% include bas.html %}
+</head>
+<body class="ic">
+  <div class="cerceve">
+{% include yan-menu.html %}
+    <main class="icerik">
+{% include ust-baslik.html %}
+{{ content }}
+      <footer class="alt-bilgi">
+        {%- if page.menu == "ana" %}
+        <p>Son Güncelleme: {{ site.time | date: "%d.%m.%Y" }}</p>
+        <p>Bu site 800x600 çözünürlükte en iyi görüntülenir.</p>
+        {%- endif %}
+        <p>Her Hakkı blogmlog'a Aittir &copy; {{ site.time | date: "%Y" }}</p>
+      </footer>
+    </main>
+  </div>
+
+  <script src="js/efektler.js"></script>
+  {%- for betik in page.betikler %}
+  <script src="js/{{ betik }}"></script>
+  {%- endfor %}
+</body>
+</html>

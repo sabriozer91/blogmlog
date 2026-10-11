@@ -18,3 +18,10 @@ _private/
 IMG_*
 Screenshot *
 WhatsApp *
+
+# Jekyll ve yerel gem kurulumu
+_site/
+.jekyll-cache/
+.sass-cache/
+.bundle/
+vendor/

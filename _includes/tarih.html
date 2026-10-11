@@ -1,0 +1,6 @@
+{%- comment -%} Kullanım: include tarih.html tarih=page.date → "11 Ekim 2026, Cumartesi" {%- endcomment -%}
+{%- assign aylar = "Ocak,Şubat,Mart,Nisan,Mayıs,Haziran,Temmuz,Ağustos,Eylül,Ekim,Kasım,Aralık" | split: "," -%}
+{%- assign gunler = "Pazartesi,Salı,Çarşamba,Perşembe,Cuma,Cumartesi,Pazar" | split: "," -%}
+{%- assign ay = include.tarih | date: "%-m" | minus: 1 -%}
+{%- assign gun = include.tarih | date: "%u" | minus: 1 -%}
+{{- include.tarih | date: "%-d" }} {{ aylar[ay] }} {{ include.tarih | date: "%Y" }}, {{ gunler[gun] -}}

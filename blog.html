@@ -1,40 +1,8 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Yayına kadar arama motorlarından gizli; blogmlog.com bağlanınca kaldır -->
-  <meta name="robots" content="noindex, nofollow">
-  <title>blogmlog — Ana Sayfa</title>
-  <meta name="description" content="blogmlog: eski usul, kalpten bir blog.">
-  <link rel="icon" href="img/papatya.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/stil.css">
-</head>
-<body class="ic">
-  <div class="cerceve">
-    <nav class="yan-menu" aria-label="Ana menü">
-      <a class="mini-logo" href="index.html">blogmlog</a>
-      <ul class="menu-listesi">
-        <li><a href="blog.html" aria-current="page"><span class="menu-ikon" aria-hidden="true">&#8962;</span>Ana Sayfa</a></li>
-        <li><a href="blog.html#yazilar"><span class="menu-ikon" aria-hidden="true">&#9998;</span>Yazılarım</a></li>
-        <li><a href="hakkimda.html"><span class="menu-ikon" aria-hidden="true">&#9786;</span>Hakkımda</a></li>
-        <li><a href="fotograflarim.html"><span class="menu-ikon" aria-hidden="true">&#10047;</span>Fotoğraflarım</a></li>
-        <li><a href="ziyaretci-defteri.html"><span class="menu-ikon" aria-hidden="true">&#9733;</span>Ziyaretçi Defteri</a></li>
-        <li><a href="bana-yaz.html"><span class="menu-ikon" aria-hidden="true">&#9993;</span>Bana Yaz</a></li>
-      </ul>
-
-      <div class="sayac">
-        Ziyaretçi Sayısı<br>
-        <span class="sayac-rakamlar" aria-label="000427"><span>0</span><span>0</span><span>0</span><span>4</span><span>2</span><span>7</span></span>
-      </div>
-    </nav>
-
-    <main class="icerik">
-      <header class="ust-baslik">
-        <h1 class="wordart wordart-dalga">blogmlog</h1>
-        <span class="wordart com" aria-hidden="true">.COM</span>
-        <button class="papatya-dugme" type="button" aria-label="Sürpriz"><img class="papatya" src="img/papatya.svg" alt="" width="82" height="82"></button>
-      </header>
+---
+layout: ic
+tam_baslik: "blogmlog — Ana Sayfa"
+menu: ana
+---
 
       <p class="karsilama">blogmlog'a hoş geldiniz! Bu sayfalarda yazılarımı okuyabilir, fotoğraflarıma bakabilir, ziyaretçi defterime bir şeyler yazabilirsiniz.</p>
 
@@ -44,39 +12,21 @@
 
       <section class="yazilar" id="yazilar">
         <h2>~*~ Son Yazılarım ~*~</h2>
+        {%- comment %} Yazılar _posts klasöründen gelir, en yenisi en üstte {% endcomment %}
+        {%- for yazi in site.posts %}
+        {%- assign adres = yazi.url | remove_first: "/" %}
 
         <article class="yazi-karti">
-          <h3><a href="yazi-ilk.html">İlk Yazım!!! Herkese Merhaba</a> <span class="yeni yanip-son">YENİ!</span></h3>
-          <p class="tarih">11 Ekim 2026, Cumartesi</p>
-          <p>Uzun zamandır kendime ait bir köşem olsun istiyordum. Sonunda oldu! Burada aklıma ne gelirse yazacağım: okuduklarım, izlediklerim, pişirdiklerim...</p>
-          <a class="devami" href="yazi-ilk.html">Devamını Oku &raquo;</a>
+          <h3><a href="{{ adres }}">{{ yazi.title }}</a>{% if forloop.first %} <span class="yeni yanip-son">YENİ!</span>{% endif %}</h3>
+          <p class="tarih">{% include tarih.html tarih=yazi.date %}</p>
+          <p>{{ yazi.ozet | default: yazi.excerpt | strip_html | truncatewords: 40 }}</p>
+          <a class="devami" href="{{ adres }}">Devamını Oku &raquo;</a>
         </article>
+        {%- else %}
 
-        <article class="yazi-karti">
-          <h3><a href="#">Sonbaharda Okunacak 5 Kitap</a></h3>
-          <p class="tarih">3 Ekim 2026, Cuma</p>
-          <p>Yapraklar dökülmeye başladı, battaniyeler çıktı. Bu sonbahar komodinimde bekleyen kitapları sizinle paylaşıyorum.</p>
-          <a class="devami" href="#">Devamını Oku &raquo;</a>
-        </article>
-
-        <article class="yazi-karti">
-          <h3><a href="#">Bugün Ne Pişirdim: Annemin Kurabiyesi</a></h3>
-          <p class="tarih">27 Eylül 2026, Cumartesi</p>
-          <p>Çocukluğumun kokusu! Annemden zorla aldığım tarifi sonunda denedim. Malzemeler ve püf noktaları içeride.</p>
-          <a class="devami" href="#">Devamını Oku &raquo;</a>
-        </article>
+        <p>Henüz yazı yok, ilk yazı çok yakında!</p>
+        {%- endfor %}
       </section>
 
       <hr class="gokkusagi">
 
-      <footer class="alt-bilgi">
-        <p>Son Güncelleme: 11.10.2026</p>
-        <p>Bu site 800x600 çözünürlükte en iyi görüntülenir.</p>
-        <p>Her Hakkı blogmlog'a Aittir &copy; 2026</p>
-      </footer>
-    </main>
-  </div>
-
-  <script src="js/efektler.js"></script>
-</body>
-</html>

@@ -530,6 +530,10 @@ body.ic {
   width: min(320px, 100%);
 }
 
+/* CMS'ten gelen görseller oranını korusun; kapak ve çerçeveli görseller kutuyu doldursun */
+.yazi img { height: auto; }
+.yazi .kabartma img { display: block; width: 100%; }
+
 .yazi figcaption {
   margin-top: 8px;
   font-family: var(--eski);

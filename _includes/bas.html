@@ -1,0 +1,8 @@
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Yayına kadar arama motorlarından gizli; blogmlog.com bağlanınca kaldır -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>{% if page.tam_baslik %}{{ page.tam_baslik }}{% else %}{{ page.title }} — blogmlog{% endif %}</title>
+  <meta name="description" content="{{ page.aciklama | default: page.ozet | default: 'blogmlog: eski usul, kalpten bir blog.' | strip_html | escape }}">
+  <link rel="icon" href="img/papatya.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/stil.css">

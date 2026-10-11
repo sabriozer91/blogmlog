@@ -1,0 +1,17 @@
+{%- assign m = page.menu -%}
+    <nav class="yan-menu" aria-label="Ana menü">
+      <a class="mini-logo" href="index.html">blogmlog</a>
+      <ul class="menu-listesi">
+        <li><a href="blog.html"{% if m == "ana" %} aria-current="page"{% endif %}><span class="menu-ikon" aria-hidden="true">&#8962;</span>Ana Sayfa</a></li>
+        <li><a href="blog.html#yazilar"{% if m == "yazilar" %} aria-current="page"{% endif %}><span class="menu-ikon" aria-hidden="true">&#9998;</span>Yazılarım</a></li>
+        <li><a href="hakkimda.html"{% if m == "hakkimda" %} aria-current="page"{% endif %}><span class="menu-ikon" aria-hidden="true">&#9786;</span>Hakkımda</a></li>
+        <li><a href="fotograflarim.html"{% if m == "fotograflarim" %} aria-current="page"{% endif %}><span class="menu-ikon" aria-hidden="true">&#10047;</span>Fotoğraflarım</a></li>
+        <li><a href="ziyaretci-defteri.html"{% if m == "defter" %} aria-current="page"{% endif %}><span class="menu-ikon" aria-hidden="true">&#9733;</span>Ziyaretçi Defteri</a></li>
+        <li><a href="bana-yaz.html"{% if m == "bana-yaz" %} aria-current="page"{% endif %}><span class="menu-ikon" aria-hidden="true">&#9993;</span>Bana Yaz</a></li>
+      </ul>
+
+      <div class="sayac">
+        Ziyaretçi Sayısı<br>
+        <span class="sayac-rakamlar" aria-label="000427"><span>0</span><span>0</span><span>0</span><span>4</span><span>2</span><span>7</span></span>
+      </div>
+    </nav>
