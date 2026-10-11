@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+
+# Secrets
+.env
+.env.*
+
+# Dependencies & builds
+node_modules/
+dist/
+
+# Local-only
+.claude/settings.local.json
+_private/
+*.log
