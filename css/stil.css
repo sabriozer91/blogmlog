@@ -195,6 +195,52 @@ body.ic {
   text-align: center;
 }
 
+/* efektler.js'in doldurduğu hareketli gökyüzü; menü yazıları üstünde kalır */
+.gokyuzu {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.yan-menu > :not(.gokyuzu) { position: relative; }
+
+.yildiz {
+  position: absolute;
+  width: var(--boy, 10px);
+  height: var(--boy, 10px);
+  margin: calc(var(--boy, 10px) / -2) 0 0 calc(var(--boy, 10px) / -2);
+  background: url("../img/yildiz.svg") center / contain no-repeat;
+  animation: parilda var(--sure, 3s) ease-in-out var(--gecikme, 0s) infinite;
+}
+
+@keyframes parilda {
+  0%, 100% { transform: scale(.2) rotate(0deg); opacity: .35; }
+  50% { transform: scale(1) rotate(25deg); opacity: 1; }
+}
+
+.kayan-yildiz {
+  position: absolute;
+  overflow: visible;
+  filter: drop-shadow(0 0 2px rgba(200, 215, 255, .9));
+}
+
+/* Çizgi önce soldan sağa çizilir, sonra kuyruğu silinerek kayar */
+.kayan-yildiz path {
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-dasharray: 100 100;
+  stroke-dashoffset: 100;
+  animation: kay 1.3s ease-in-out forwards;
+}
+
+@keyframes kay {
+  0% { stroke-dashoffset: 100; }
+  45% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -100; }
+}
+
 .yan-menu .mini-logo {
   display: block;
   margin: 0 auto 14px;
@@ -433,7 +479,7 @@ body.ic {
   .cerceve { grid-template-columns: 1fr; }
 
   .yan-menu {
-    position: static;
+    position: relative;
     height: auto;
     padding: 12px 12px 14px;
     border-right: 0;
@@ -463,6 +509,7 @@ body.ic {
 
 @media (prefers-reduced-motion: reduce) {
   .yanip-son, .papatya { animation: none; }
+  .yildiz { animation: none; transform: scale(.6); opacity: .8; }
 }
 
 /* İmleç pırıltısı */
