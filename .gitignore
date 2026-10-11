@@ -13,3 +13,6 @@ dist/
 .claude/settings.local.json
 _private/
 *.log
+
+# Original photos (site uses optimized copies in img/)
+IMG_*

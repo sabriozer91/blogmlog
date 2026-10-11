@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96">
+  <defs>
+    <g id="yaprak">
+      <path d="M0 0 C -7 -6 -6 -17 0 -21 C 6 -17 7 -6 0 0 Z"/>
+    </g>
+    <g id="cicek">
+      <g fill="#e8173f" stroke="#7d0019" stroke-width="1">
+        <use href="#yaprak"/>
+        <use href="#yaprak" transform="rotate(60)"/>
+        <use href="#yaprak" transform="rotate(120)"/>
+        <use href="#yaprak" transform="rotate(180)"/>
+        <use href="#yaprak" transform="rotate(240)"/>
+        <use href="#yaprak" transform="rotate(300)"/>
+      </g>
+      <g fill="#ff5a78" transform="rotate(30) scale(.6)">
+        <use href="#yaprak"/>
+        <use href="#yaprak" transform="rotate(60)"/>
+        <use href="#yaprak" transform="rotate(120)"/>
+        <use href="#yaprak" transform="rotate(180)"/>
+        <use href="#yaprak" transform="rotate(240)"/>
+        <use href="#yaprak" transform="rotate(300)"/>
+      </g>
+      <circle r="3.5" fill="#ffe14d" stroke="#8a6d00" stroke-width=".8"/>
+    </g>
+  </defs>
+  <rect width="96" height="96" fill="#2f6b1f"/>
+  <use href="#cicek" transform="translate(24 24)"/>
+  <use href="#cicek" transform="translate(72 72) rotate(15)"/>
+  <use href="#cicek" transform="translate(72 22) rotate(40) scale(.7)"/>
+  <use href="#cicek" transform="translate(22 74) rotate(10) scale(.75)"/>
+</svg>

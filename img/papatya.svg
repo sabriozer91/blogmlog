@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="-50 -50 100 100">
+  <defs>
+    <radialGradient id="yaprakRenk" cx="0" cy="0" r="46" gradientUnits="userSpaceOnUse">
+      <stop offset="0.25" stop-color="#5a5cd6"/>
+      <stop offset="1" stop-color="#c9c4ff"/>
+    </radialGradient>
+    <radialGradient id="gobek" cx="-3" cy="-3" r="14" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff6a8"/>
+      <stop offset="1" stop-color="#e0a800"/>
+    </radialGradient>
+    <ellipse id="y" cx="0" cy="-27" rx="5" ry="19"/>
+  </defs>
+  <g fill="url(#yaprakRenk)" stroke="#3b3aa8" stroke-width=".8">
+    <use href="#y"/><use href="#y" transform="rotate(20)"/><use href="#y" transform="rotate(40)"/>
+    <use href="#y" transform="rotate(60)"/><use href="#y" transform="rotate(80)"/><use href="#y" transform="rotate(100)"/>
+    <use href="#y" transform="rotate(120)"/><use href="#y" transform="rotate(140)"/><use href="#y" transform="rotate(160)"/>
+    <use href="#y" transform="rotate(180)"/><use href="#y" transform="rotate(200)"/><use href="#y" transform="rotate(220)"/>
+    <use href="#y" transform="rotate(240)"/><use href="#y" transform="rotate(260)"/><use href="#y" transform="rotate(280)"/>
+    <use href="#y" transform="rotate(300)"/><use href="#y" transform="rotate(320)"/><use href="#y" transform="rotate(340)"/>
+  </g>
+  <circle r="12" fill="url(#gobek)" stroke="#9a6b00" stroke-width="1"/>
+</svg>

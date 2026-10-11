@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <defs>
+    <g id="yaprak">
+      <ellipse cx="0" cy="-11" rx="6.5" ry="11"/>
+    </g>
+    <g id="cicek">
+      <g fill="#fff4f9" stroke="#f1b2cb" stroke-width="1">
+        <use href="#yaprak"/>
+        <use href="#yaprak" transform="rotate(72)"/>
+        <use href="#yaprak" transform="rotate(144)"/>
+        <use href="#yaprak" transform="rotate(216)"/>
+        <use href="#yaprak" transform="rotate(288)"/>
+      </g>
+      <circle r="5" fill="#ffd77a" stroke="#efb04f" stroke-width="1"/>
+    </g>
+  </defs>
+  <rect width="120" height="120" fill="#fbdde9"/>
+  <use href="#cicek" transform="translate(30 30)"/>
+  <use href="#cicek" transform="translate(90 88) rotate(24) scale(.78)"/>
+  <g fill="#f6c3d6">
+    <circle cx="88" cy="26" r="2"/>
+    <circle cx="26" cy="92" r="2.5"/>
+    <circle cx="58" cy="60" r="1.5"/>
+  </g>
+</svg>
