@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Yayına kadar arama motorlarından gizli; blogmlog.com bağlanınca kaldır -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>Bana Yaz — blogmlog</title>
+  <meta name="description" content="blogmlog'a mesaj gönder.">
+  <link rel="icon" href="img/papatya.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/stil.css">
+</head>
+<body class="ic">
+  <div class="cerceve">
+    <nav class="yan-menu" aria-label="Ana menü">
+      <a class="mini-logo" href="index.html">blogmlog</a>
+      <ul class="menu-listesi">
+        <li><a href="blog.html"><span class="menu-ikon" aria-hidden="true">&#8962;</span>Ana Sayfa</a></li>
+        <li><a href="blog.html#yazilar"><span class="menu-ikon" aria-hidden="true">&#9998;</span>Yazılarım</a></li>
+        <li><a href="#"><span class="menu-ikon" aria-hidden="true">&#9786;</span>Hakkımda</a></li>
+        <li><a href="fotograflarim.html"><span class="menu-ikon" aria-hidden="true">&#10047;</span>Fotoğraflarım</a></li>
+        <li><a href="#"><span class="menu-ikon" aria-hidden="true">&#9733;</span>Ziyaretçi Defteri</a></li>
+        <li><a href="bana-yaz.html" aria-current="page"><span class="menu-ikon" aria-hidden="true">&#9993;</span>Bana Yaz</a></li>
+      </ul>
+
+      <div class="sayac">
+        Ziyaretçi Sayısı<br>
+        <span class="sayac-rakamlar" aria-label="000427"><span>0</span><span>0</span><span>0</span><span>4</span><span>2</span><span>7</span></span>
+      </div>
+    </nav>
+
+    <main class="icerik">
+      <header class="ust-baslik">
+        <a href="blog.html" style="text-decoration:none"><span class="wordart wordart-dalga">blogmlog</span></a>
+        <span class="wordart com" aria-hidden="true">.COM</span>
+        <button class="papatya-dugme" type="button" aria-label="Sürpriz"><img class="papatya" src="img/papatya.svg" alt="" width="82" height="82"></button>
+      </header>
+
+      <hr class="gokkusagi">
+
+      <section class="yazi">
+        <h1>Bana Yaz!</h1>
+        <p>Bir şey sormak, merhaba demek ya da bir şarkı önermek istersen formu doldurman yeterli. Mesajın doğrudan bana gelecek :)</p>
+
+        <!-- Şimdilik gönderim yok; bana-yaz.js sadece teşekkür ekranını gösterir.
+             FormSubmit sonra bağlanacak, gizli alanlar ve tuzak alanı onun için. -->
+        <form class="mektup" id="mektup">
+          <input type="hidden" name="_subject" value="blogmlog'dan yeni mesaj!">
+          <input type="hidden" name="_template" value="box">
+          <input class="bal-kupu" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <label for="ad">Adın:</label>
+          <input id="ad" name="Ad" type="text" required maxlength="80" autocomplete="name">
+
+          <label for="eposta">E-posta adresin:</label>
+          <input id="eposta" name="email" type="email" required maxlength="120" autocomplete="email">
+
+          <label for="mesaj">Mesajın:</label>
+          <textarea id="mesaj" name="Mesaj" rows="7" required maxlength="3000"></textarea>
+
+          <div class="mektup-dugmeler">
+            <button class="klasik-dugme" type="submit">Gönder</button>
+            <button class="klasik-dugme" type="reset">Temizle</button>
+          </div>
+          <p class="mektup-durum" role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="gonderildi" tabindex="-1" hidden>
+          <p class="gonderildi-mesaj">Mesajın uçtu gitti! Teşekkürler :)</p>
+        </div>
+      </section>
+
+      <hr class="gokkusagi">
+
+      <footer class="alt-bilgi">
+        <p>Her Hakkı blogmlog'a Aittir &copy; 2026</p>
+      </footer>
+    </main>
+  </div>
+
+  <script src="js/efektler.js"></script>
+  <script src="js/bana-yaz.js"></script>
+</body>
+</html>

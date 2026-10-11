@@ -341,14 +341,6 @@ body.ic {
   background: #000;
 }
 
-.webring {
-  margin: 16px 4px 0;
-  padding: 8px 4px;
-  font-size: 11px;
-  border: 2px groove #8a8acf;
-}
-.webring a, .webring a:visited { color: #ffd1ec; }
-
 /* ---------- İçerik alanı ---------- */
 
 .icerik {
@@ -552,6 +544,159 @@ body.ic {
   text-align: center;
 }
 
+/* Fotoğraf albümü: bantla yapıştırılmış polaroidler */
+
+.album {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.album-izgara {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 38px 28px;
+  margin-top: 30px;
+}
+
+.polaroid {
+  position: relative;
+  width: min(250px, 100%);
+  margin: 0;
+  padding: 10px 10px 0;
+  background: #fff;
+  box-shadow: 2px 4px 10px rgba(90, 16, 48, .25);
+  transform: rotate(-2.5deg);
+  transition: transform .2s ease;
+}
+.polaroid:nth-child(even) { transform: rotate(2deg); }
+.polaroid:hover,
+.polaroid:focus-within {
+  z-index: 1;
+  transform: rotate(0deg) scale(1.03);
+}
+
+/* Bant */
+.polaroid::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 86px;
+  height: 24px;
+  margin-left: -43px;
+  background: rgba(255, 236, 160, .75);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .12);
+  transform: rotate(-4deg);
+}
+
+.polaroid a { display: block; line-height: 0; }
+.polaroid img { display: block; width: 100%; height: auto; }
+
+.polaroid figcaption {
+  padding: 12px 4px 16px;
+  font-family: var(--komik);
+  font-size: 17px;
+  text-align: center;
+  color: var(--lacivert);
+}
+
+/* Bana Yaz formu: içe gömük kutular, gri Windows düğmeleri */
+
+[hidden] { display: none !important; }
+
+.mektup {
+  display: grid;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.mektup label {
+  margin-top: 10px;
+  font-family: var(--komik);
+  font-weight: bold;
+  color: var(--pembe-koyu);
+}
+
+.mektup input[type="text"],
+.mektup input[type="email"],
+.mektup textarea {
+  width: 100%;
+  padding: 6px 8px;
+  font: 15px var(--verdana);
+  color: #000;
+  background: #fff;
+  border: 2px inset #c9c9c9;
+  border-radius: 0;
+}
+
+.mektup textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.mektup input:focus,
+.mektup textarea:focus {
+  outline: 2px dotted var(--pembe-koyu);
+  outline-offset: 1px;
+  background: #fffef0;
+}
+
+/* Spam botları için görünmez tuzak alanı */
+.bal-kupu {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.mektup-dugmeler {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.klasik-dugme {
+  padding: 5px 18px;
+  font: bold 14px var(--verdana);
+  color: #000;
+  background: #c0c0c0;
+  border: 2px outset #e8e8e8;
+  border-radius: 0;
+  cursor: pointer;
+}
+.klasik-dugme:active { border-style: inset; }
+.klasik-dugme:disabled { color: #808080; cursor: wait; }
+.klasik-dugme:focus-visible { outline: 1px dotted #000; outline-offset: -5px; }
+
+.mektup-durum {
+  min-height: 1.5em;
+  margin: 8px 0 0;
+  font-family: var(--komik);
+}
+
+.gonderildi {
+  padding: 10px 0;
+  text-align: center;
+}
+.gonderildi:focus { outline: none; }
+
+.gonderildi-mesaj {
+  font-family: var(--komik);
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--pembe-koyu);
+  text-shadow: 2px 2px 0 #fff;
+}
+
+.tesekkur-gif {
+  display: block;
+  margin: 12px auto 0;
+  border: 6px ridge #e3a3c0;
+}
+
 /* Alt bilgi */
 
 .alt-bilgi {
@@ -588,8 +733,7 @@ body.ic {
   .menu-listesi li { margin: 0; }
   .menu-listesi a { gap: 4px; }
 
-  .yan-menu .sayac,
-  .yan-menu .webring { display: none; }
+  .yan-menu .sayac { display: none; }
 
   .icerik { padding-top: 18px; }
 }
