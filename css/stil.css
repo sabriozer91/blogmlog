@@ -116,6 +116,20 @@ body.giris {
   color: #fff;
 }
 
+/* efektler.js çiçekleri tek tek döndürüp bu tuvale çizer; çalışmazsa desen kalır */
+.cicek-tuvali {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  display: block;
+  width: 100%;
+  height: 100vh;
+  height: 100lvh;
+}
+
+body.giris.cicekler-canli { background-image: none; }
+
 .giris-kutu {
   max-width: 560px;
   margin: 0 auto;

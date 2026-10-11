@@ -88,6 +88,106 @@
     setTimeout(kayanYildiz, rastgele(1000, 2500));
   }
 
+  // Giriş sayfası: arkadaki çiçekler tek tek döner, %80–%100 arası nefes alır
+  if (document.body.classList.contains('giris')) cicekBahcesi();
+
+  function cicekBahcesi() {
+    var tuval = document.createElement('canvas');
+    var ctx = tuval.getContext('2d');
+    if (!ctx || !window.Path2D) return;
+    tuval.className = 'cicek-tuvali';
+    tuval.setAttribute('aria-hidden', 'true');
+    document.body.prepend(tuval);
+    document.body.classList.add('cicekler-canli');
+
+    // img/cicekler-kirmizi.svg ile aynı desen: 96px karede 4 çiçek [x, y, açı, boy]
+    var DESEN = 96;
+    var YERLESIM = [[24, 24, 0, 1], [72, 72, 15, 1], [72, 22, 40, 0.7], [22, 74, 10, 0.75]];
+    var yaprak = new Path2D('M0 0 C -7 -6 -6 -17 0 -21 C 6 -17 7 -6 0 0 Z');
+    var dpr, kalip, cicekler, en = 0, boy = 0;
+
+    // Çiçeği bir kez küçük bir tuvale çiz, her karede onu döndürüp bas
+    function kalipCiz() {
+      kalip = document.createElement('canvas');
+      kalip.width = kalip.height = Math.ceil(48 * dpr);
+      var c = kalip.getContext('2d');
+      c.translate(kalip.width / 2, kalip.height / 2);
+      c.scale(dpr, dpr);
+      c.lineWidth = 1;
+      c.fillStyle = '#e8173f';
+      c.strokeStyle = '#7d0019';
+      for (var i = 0; i < 6; i++) {
+        c.save(); c.rotate(i * Math.PI / 3); c.fill(yaprak); c.stroke(yaprak); c.restore();
+      }
+      c.fillStyle = '#ff5a78';
+      for (i = 0; i < 6; i++) {
+        c.save(); c.rotate(Math.PI / 6 + i * Math.PI / 3); c.scale(0.6, 0.6); c.fill(yaprak); c.restore();
+      }
+      c.beginPath();
+      c.arc(0, 0, 3.5, 0, Math.PI * 2);
+      c.fillStyle = '#ffe14d';
+      c.fill();
+      c.lineWidth = 0.8;
+      c.strokeStyle = '#8a6d00';
+      c.stroke();
+    }
+
+    function kur() {
+      // Adres çubuğu açılıp kapanınca yeniden karıştırma; sadece boyut gerçekten değişince kur
+      if (tuval.clientWidth === en && tuval.clientHeight === boy) return;
+      en = tuval.clientWidth;
+      boy = tuval.clientHeight;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      tuval.width = Math.round(en * dpr);
+      tuval.height = Math.round(boy * dpr);
+      kalipCiz();
+
+      cicekler = [];
+      for (var y = 0; y < boy; y += DESEN) {
+        for (var x = 0; x < en; x += DESEN) {
+          YERLESIM.forEach(function (p) {
+            cicekler.push({
+              x: x + p[0],
+              y: y + p[1],
+              boy: p[3],
+              aci: rastgele(0, Math.PI * 2),
+              hiz: rastgele(0.15, 0.45) * (Math.random() < 0.5 ? -1 : 1),
+              nefes: rastgele(2.5, 6),
+              faz: rastgele(0, Math.PI * 2)
+            });
+          });
+        }
+      }
+    }
+
+    function ciz(zaman) {
+      var t = zaman / 1000;
+      var yarim = kalip.width / 2;
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.fillStyle = '#2f6b1f';
+      ctx.fillRect(0, 0, tuval.width, tuval.height);
+      for (var i = 0; i < cicekler.length; i++) {
+        var c = cicekler[i];
+        var olcek = c.boy * (0.9 + 0.1 * Math.sin(t * 2 * Math.PI / c.nefes + c.faz));
+        var a = c.aci + c.hiz * t;
+        var cos = Math.cos(a) * olcek;
+        var sin = Math.sin(a) * olcek;
+        ctx.setTransform(cos, sin, -sin, cos, c.x * dpr, c.y * dpr);
+        ctx.drawImage(kalip, -yarim, -yarim);
+      }
+      requestAnimationFrame(ciz);
+    }
+
+    var bekle;
+    window.addEventListener('resize', function () {
+      clearTimeout(bekle);
+      bekle = setTimeout(kur, 150);
+    });
+
+    kur();
+    requestAnimationFrame(ciz);
+  }
+
   // İmleç pırıltısı (sadece fare ile)
   var isaretler = ['✦', '✧', '★', '✶'];
   var renkler = ['#ff5fc8', '#ffe14d', '#7ff6ff', '#ffffff', '#b38cff'];
